@@ -21,6 +21,18 @@ TOOLS = [
             },
         },
     },
+    {
+        "type": "function",
+        "function": {
+            "name": "get_city_weather",
+            "description": "获取指定城市的当前天气",
+            "parameters": {
+                "type": "object",
+                "properties": {"city": {"type": "string", "description": "城市名，如 杭州"}},
+                "required": ["city"],
+            },
+        },
+    },
 ]
 
 def _safe_calc(expr):
@@ -45,4 +57,15 @@ def call_tool(name, args):
             return str(_safe_calc(args["expression"]))
         except Exception as e:
             return f"计算失败: {e}"
+    if name == "get_city_weather":
+        city = args.get("city", "未知")
+        # 演示用示例数据：接入真实天气 API（如和风天气 QWeather，免费额度）时，
+        # 用 requests 请求其接口替换这里的字典即可。
+        mock = {
+            "杭州": "多云 18℃ 微风",
+            "北京": "晴 15℃ 西北风3级",
+            "上海": "小雨 20℃ 东南风2级",
+            "深圳": "多云 26℃ 南风2级",
+        }
+        return mock.get(city, f"{city}：晴 20℃（示例数据，暂未收录该城市）")
     return f"未知工具: {name}"

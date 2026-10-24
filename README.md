@@ -7,6 +7,7 @@
 - system prompt 人设 + 多轮对话 + 上下文窗口裁剪
 - Function Calling：Agent 自主决定调用「查时间」「计算器」等工具
 - 封装为可复用的 Agent 类
+- RAG 检索增强：先检索知识库资料，再据此回答，减少幻觉
 
 ## 运行
 ```powershell
@@ -20,3 +21,5 @@ python agent_class.py
 - tools.py：工具定义与执行
 - agent.py：交互式 Agent
 - agent_class.py：可复用 Agent 类
+- rag.py：RAG 检索增强问答
+- knowledge.txt：知识库文档
